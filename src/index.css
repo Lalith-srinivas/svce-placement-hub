@@ -1,0 +1,86 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 48 100% 98%;
+    --foreground: 0 0% 0%;
+    --border: 0 0% 0%;
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 0%;
+  }
+
+  * {
+    border-color: #000000;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 5rem;
+    background-color: #FFFDF5;
+  }
+
+  body {
+    background-color: #FFFDF5;
+    color: #000000;
+    font-family: "Inter", sans-serif;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: "Outfit", sans-serif;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+  }
+
+  ::selection {
+    background: #FFE600;
+    color: #000000;
+  }
+}
+
+@layer components {
+  .neo-box {
+    @apply border-2 border-black bg-white shadow-neo transition-all;
+  }
+
+  .neo-box-interactive {
+    @apply border-2 border-black bg-white shadow-neo transition-all hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-neo-hover active:translate-x-1 active:translate-y-1 active:shadow-neo-active;
+  }
+
+  .neo-btn-primary {
+    @apply inline-flex items-center justify-center font-heading font-black text-xs uppercase tracking-wider px-4 py-2.5 bg-neo-yellow text-black border-2 border-black shadow-neo hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-neo-hover active:translate-x-1 active:translate-y-1 active:shadow-neo-active transition-all cursor-pointer;
+  }
+
+  .neo-btn-cyan {
+    @apply inline-flex items-center justify-center font-heading font-black text-xs uppercase tracking-wider px-4 py-2.5 bg-neo-cyan text-black border-2 border-black shadow-neo hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-neo-hover active:translate-x-1 active:translate-y-1 active:shadow-neo-active transition-all cursor-pointer;
+  }
+
+  .neo-btn-pink {
+    @apply inline-flex items-center justify-center font-heading font-black text-xs uppercase tracking-wider px-4 py-2.5 bg-neo-pink text-black border-2 border-black shadow-neo hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-neo-hover active:translate-x-1 active:translate-y-1 active:shadow-neo-active transition-all cursor-pointer;
+  }
+
+  .neo-btn-white {
+    @apply inline-flex items-center justify-center font-heading font-black text-xs uppercase tracking-wider px-4 py-2.5 bg-white text-black border-2 border-black shadow-neo hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-neo-hover active:translate-x-1 active:translate-y-1 active:shadow-neo-active transition-all cursor-pointer;
+  }
+
+  .neo-tag {
+    @apply inline-flex items-center gap-1 font-mono text-[11px] font-bold px-2 py-0.5 border-2 border-black shadow-neo-sm;
+  }
+
+  .neo-sticker {
+    @apply inline-flex items-center gap-1.5 font-heading font-black text-[11px] uppercase tracking-wider px-3 py-1 border-2 border-black shadow-neo-sm rotate-[-1deg];
+  }
+}
+
+@layer utilities {
+  .tracking-label {
+    letter-spacing: 0.08em;
+  }
+  .content-visibility-auto {
+    content-visibility: auto;
+    contain-intrinsic-size: 1px 700px;
+  }
+}
