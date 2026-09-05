@@ -1,11 +1,12 @@
 import { NavLink, useNavigate } from "react-router-dom";
-import { BookOpenText, Radar, PanelLeftClose, PanelLeftOpen, LayoutGrid, X } from "lucide-react";
+import { BookOpenText, Radar, PanelLeftClose, PanelLeftOpen, LayoutGrid, X, Sparkles } from "lucide-react";
 import { useSidebar } from "./sidebar-context";
 import { cn } from "@/lib/utils";
 
 const NAV_ITEMS = [
   { to: "/company/intelligence", label: "Company Intelligence", icon: Radar },
   { to: "/company/skills", label: "Skill Intelligence", icon: BookOpenText },
+  { to: "/company/matrix", label: "Student Matrix", icon: Sparkles },
 ];
 
 function SidebarInner({ onNavigate }: { onNavigate?: () => void }) {

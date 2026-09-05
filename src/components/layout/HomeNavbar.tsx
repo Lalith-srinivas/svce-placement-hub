@@ -13,6 +13,7 @@ import {
   X,
   LogOut,
   ChevronRight,
+  Target,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useAuth } from "@/context/AuthContext";
@@ -132,6 +133,22 @@ export function HomeNavbar() {
           >
             <BookOpen className="h-3.5 w-3.5 stroke-[2.5]" />
             4-Step Prep
+          </NavLink>
+
+          {/* My Matrix Navigation Item */}
+          <NavLink
+            to="/matrix"
+            className={({ isActive }) =>
+              cn(
+                "flex items-center gap-1.5 rounded-lg border-2 border-black px-3 py-1.5 text-xs font-black uppercase transition-all cursor-pointer shadow-neo-sm",
+                isActive
+                  ? "bg-neo-pink text-black translate-x-0.5 translate-y-0.5 shadow-neo-active"
+                  : "bg-white text-black hover:bg-neo-pink hover:translate-x-0.5 hover:translate-y-0.5"
+              )
+            }
+          >
+            <Target className="h-3.5 w-3.5 stroke-[2.5]" />
+            My Matrix
           </NavLink>
 
           {/* Profile Navigation Item */}
@@ -325,11 +342,28 @@ export function HomeNavbar() {
             </NavLink>
 
             <NavLink
+              to="/matrix"
+              onClick={() => setMobileMenuOpen(false)}
+              className={({ isActive }) =>
+                cn(
+                  "flex items-center justify-between rounded-lg border-2 border-black p-2.5 text-xs font-black uppercase transition-all shadow-neo-sm",
+                  isActive ? "bg-neo-pink text-black" : "bg-white text-black hover:bg-slate-50"
+                )
+              }
+            >
+              <div className="flex items-center gap-2">
+                <Target className="h-4 w-4 stroke-[2.5]" />
+                <span>My Matrix (Readiness)</span>
+              </div>
+              <ChevronRight className="h-3.5 w-3.5" />
+            </NavLink>
+
+            <NavLink
               to="/profile"
               onClick={() => setMobileMenuOpen(false)}
               className={({ isActive }) =>
                 cn(
-                  "flex items-center justify-between rounded-lg border-2 border-black p-2.5 text-xs font-black uppercase transition-all shadow-neo-sm sm:col-span-2",
+                  "flex items-center justify-between rounded-lg border-2 border-black p-2.5 text-xs font-black uppercase transition-all shadow-neo-sm",
                   isActive ? "bg-neo-cyan text-black" : "bg-white text-black hover:bg-slate-50"
                 )
               }

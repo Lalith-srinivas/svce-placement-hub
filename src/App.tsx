@@ -16,6 +16,8 @@ import AuthPage from "@/pages/AuthPage";
 import StudentProfileDashboard from "@/pages/StudentProfileDashboard";
 import ProfileOnboardingPage from "@/pages/ProfileOnboardingPage";
 import ProfileEditPage from "@/pages/ProfileEditPage";
+import MyMatrixPage from "@/pages/MyMatrixPage";
+import CompanyStudentMatrixPage from "@/pages/CompanyStudentMatrixPage";
 import NotFound from "@/pages/NotFound";
 
 const queryClient = new QueryClient({
@@ -45,17 +47,22 @@ export default function App() {
                 <Route path="/skills" element={<SkillsIndex />} />
                 <Route path="/playbook" element={<Playbook />} />
 
+                {/* Student Placement Matrix */}
+                <Route path="/matrix" element={<MyMatrixPage />} />
+                <Route path="/my-matrix" element={<Navigate to="/matrix" replace />} />
+
                 {/* Student Profile Module */}
                 <Route path="/login" element={<AuthPage />} />
                 <Route path="/profile" element={<StudentProfileDashboard />} />
                 <Route path="/profile/onboarding" element={<ProfileOnboardingPage />} />
                 <Route path="/profile/edit" element={<ProfileEditPage />} />
 
-                {/* Company Detailed Intelligence & Skills */}
+                {/* Company Detailed Intelligence & Skills & Student Matrix */}
                 <Route path="/company" element={<AppLayout />}>
                   <Route index element={<Navigate to="intelligence" replace />} />
                   <Route path="intelligence" element={<CompanyIntelligence />} />
                   <Route path="skills" element={<SkillIntelligence />} />
+                  <Route path="matrix" element={<CompanyStudentMatrixPage />} />
                 </Route>
 
                 {/* Fallback */}
