@@ -15,7 +15,7 @@ import {
 import { toast } from "sonner";
 
 export default function AuthPage() {
-  const { signIn, signUp, loginDemoStudent, user, hasProfile } = useAuth();
+  const { signIn, signUp, loginDemoStudent, user, hasProfile, isLoading } = useAuth();
   const navigate = useNavigate();
 
   const [mode, setMode] = useState<"signin" | "signup">("signin");
@@ -25,8 +25,9 @@ export default function AuthPage() {
   const [loading, setLoading] = useState(false);
   const [errorMsg, setErrorMsg] = useState("");
 
-  // Redirect if already authenticated
+  // Redirect if already authenticated and initial loading finished
   React.useEffect(() => {
+    if (isLoading) return;
     if (user) {
       if (hasProfile) {
         navigate("/profile", { replace: true });
@@ -34,7 +35,7 @@ export default function AuthPage() {
         navigate("/profile/onboarding", { replace: true });
       }
     }
-  }, [user, hasProfile, navigate]);
+  }, [user, hasProfile, isLoading, navigate]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -46,8 +47,14 @@ export default function AuthPage() {
       if (res.error) {
         setErrorMsg(res.error);
         toast.error("Sign In Failed: " + res.error);
+        setLoading(false);
       } else {
         toast.success("Welcome back to SVCE Placement Hub!");
+        if (res.hasProfile) {
+          navigate("/profile", { replace: true });
+        } else {
+          navigate("/profile/onboarding", { replace: true });
+        }
       }
     } else {
       if (!fullName.trim()) {
@@ -59,11 +66,16 @@ export default function AuthPage() {
       if (res.error) {
         setErrorMsg(res.error);
         toast.error("Sign Up Failed: " + res.error);
+        setLoading(false);
       } else {
-        toast.success("Account created successfully! Redirecting to profile setup...");
+        toast.success("Account created successfully!");
+        if (res.hasProfile) {
+          navigate("/profile", { replace: true });
+        } else {
+          navigate("/profile/onboarding", { replace: true });
+        }
       }
     }
-    setLoading(false);
   };
 
   const handleDemoLogin = () => {

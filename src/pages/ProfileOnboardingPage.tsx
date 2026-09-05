@@ -6,7 +6,7 @@ import { ProfileWizard } from "@/components/profile/ProfileWizard";
 import { GraduationCap, CheckCircle2 } from "lucide-react";
 
 export default function ProfileOnboardingPage() {
-  const { user, isLoading } = useAuth();
+  const { user, hasProfile, isLoading } = useAuth();
 
   if (isLoading) {
     return (
@@ -19,6 +19,11 @@ export default function ProfileOnboardingPage() {
   // If unauthenticated, redirect to login
   if (!user) {
     return <Navigate to="/login" replace />;
+  }
+
+  // If profile already exists, skip the onboarding form and go to dashboard
+  if (hasProfile) {
+    return <Navigate to="/profile" replace />;
   }
 
   return (

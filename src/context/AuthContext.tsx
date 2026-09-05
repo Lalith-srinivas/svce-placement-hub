@@ -15,8 +15,8 @@ interface AuthContextType {
   hasProfile: boolean;
   isLoading: boolean;
   isDemo: boolean;
-  signIn: (email: string, password: string) => Promise<{ error?: string }>;
-  signUp: (email: string, password: string, fullName: string) => Promise<{ error?: string }>;
+  signIn: (email: string, password: string) => Promise<{ error?: string; hasProfile?: boolean }>;
+  signUp: (email: string, password: string, fullName: string) => Promise<{ error?: string; hasProfile?: boolean }>;
   signOut: () => Promise<void>;
   loginDemoStudent: () => void;
   refreshProfile: () => Promise<void>;
@@ -38,12 +38,14 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [isDemo, setIsDemo] = useState<boolean>(false);
 
-  const loadProfile = useCallback(async (userId: string) => {
+  const loadProfile = useCallback(async (userId: string): Promise<CompleteStudentProfile | null> => {
     try {
       const p = await fetchCompleteStudentProfile(userId);
       setProfile(p);
+      return p;
     } catch (err) {
       console.error("Failed to load profile", err);
+      return null;
     }
   }, []);
 
@@ -143,7 +145,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     };
   }, [loadProfile]);
 
-  const signIn = async (email: string, password: string): Promise<{ error?: string }> => {
+  const signIn = async (email: string, password: string): Promise<{ error?: string; hasProfile?: boolean }> => {
     setIsLoading(true);
     const normalizedEmail = email.toLowerCase().trim();
 
@@ -157,9 +159,10 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
       localStorage.setItem("svce_active_user", JSON.stringify(DEMO_USER));
       setUser(DEMO_USER);
       setIsDemo(true);
-      await loadProfile(DEMO_USER_ID);
+      const p = await loadProfile(DEMO_USER_ID);
       setIsLoading(false);
-      return {};
+      const hasProf = Boolean(p && p.personal?.full_name && p.personal?.register_number);
+      return { hasProfile: hasProf };
     }
 
     // 2. Check locally saved registered users map
@@ -183,9 +186,10 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
           localStorage.setItem("svce_active_user", JSON.stringify(authUser));
           setUser(authUser);
           setIsDemo(false);
-          await loadProfile(data.user.id);
+          const p = await loadProfile(data.user.id);
           setIsLoading(false);
-          return {};
+          const hasProf = Boolean(p && p.personal?.full_name && p.personal?.register_number);
+          return { hasProfile: hasProf };
         }
       } catch (e) {
         console.warn("Supabase signIn exception:", e);
@@ -203,9 +207,10 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
       localStorage.setItem("svce_active_user", JSON.stringify(authUser));
       setUser(authUser);
       setIsDemo(false);
-      await loadProfile(localUser.id);
+      const p = await loadProfile(localUser.id);
       setIsLoading(false);
-      return {};
+      const hasProf = Boolean(p && p.personal?.full_name && p.personal?.register_number);
+      return { hasProfile: hasProf };
     }
 
     // 5. Check if this email matches the existing Demo profile's college/personal email
@@ -219,9 +224,10 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
       localStorage.setItem("svce_active_user", JSON.stringify(DEMO_USER));
       setUser(DEMO_USER);
       setIsDemo(true);
-      await loadProfile(DEMO_USER_ID);
+      const p = await loadProfile(DEMO_USER_ID);
       setIsLoading(false);
-      return {};
+      const hasProf = Boolean(p && p.personal?.full_name && p.personal?.register_number);
+      return { hasProfile: hasProf };
     }
 
     setIsLoading(false);
@@ -231,7 +237,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     };
   };
 
-  const signUp = async (email: string, password: string, fullName: string): Promise<{ error?: string }> => {
+  const signUp = async (email: string, password: string, fullName: string): Promise<{ error?: string; hasProfile?: boolean }> => {
     setIsLoading(true);
     const normalizedEmail = email.toLowerCase().trim();
     const localId = `student-${Date.now()}`;
@@ -273,9 +279,10 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
           localStorage.setItem("svce_active_user", JSON.stringify(authUser));
           setUser(authUser);
           setIsDemo(false);
-          await loadProfile(data.user.id);
+          const p = await loadProfile(data.user.id);
           setIsLoading(false);
-          return {};
+          const hasProf = Boolean(p && p.personal?.full_name && p.personal?.register_number);
+          return { hasProfile: hasProf };
         }
       } catch (err: any) {
         console.warn("Supabase signUp warning:", err);
@@ -292,9 +299,10 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     localStorage.setItem("svce_active_user", JSON.stringify(authUser));
     setUser(authUser);
     setIsDemo(false);
-    await loadProfile(localId);
+    const p = await loadProfile(localId);
     setIsLoading(false);
-    return {};
+    const hasProf = Boolean(p && p.personal?.full_name && p.personal?.register_number);
+    return { hasProfile: hasProf };
   };
 
   const signOut = async () => {
