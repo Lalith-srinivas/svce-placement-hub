@@ -19,25 +19,25 @@ export const MatrixEligibilityBadge: React.FC<MatrixEligibilityBadgeProps> = ({
   return (
     <div className="inline-flex flex-col items-start gap-1">
       <span
-        className={`inline-flex items-center gap-1.5 rounded-full border font-mono font-bold transition-colors ${
+        className={`inline-flex items-center gap-1.5 rounded-md border-2 border-black font-mono font-black transition-colors shadow-neo-sm ${
           isSm ? "px-2 py-0.5 text-[10px]" : "px-3 py-1 text-xs"
         } ${
           isEligible
-            ? "border-emerald-700/80 bg-emerald-950/70 text-emerald-400"
-            : "border-rose-700/80 bg-rose-950/70 text-rose-400"
+            ? "bg-neo-green text-black"
+            : "bg-neo-pink text-black"
         }`}
         title={reason}
       >
         {isEligible ? (
-          <CheckCircle2 className={`${isSm ? "h-3 w-3" : "h-3.5 w-3.5"} shrink-0`} />
+          <CheckCircle2 className={`${isSm ? "h-3 w-3" : "h-3.5 w-3.5"} shrink-0 stroke-[2.5]`} />
         ) : (
-          <XCircle className={`${isSm ? "h-3 w-3" : "h-3.5 w-3.5"} shrink-0`} />
+          <XCircle className={`${isSm ? "h-3 w-3" : "h-3.5 w-3.5"} shrink-0 stroke-[2.5]`} />
         )}
         <span>{isEligible ? "Eligible" : "Not Eligible"}</span>
       </span>
 
       {showReason && reason && (
-        <span className="font-mono text-[10px] text-slate-400 max-w-xs leading-tight">
+        <span className="font-mono text-[10px] text-slate-600 max-w-xs leading-tight font-bold">
           {reason}
         </span>
       )}

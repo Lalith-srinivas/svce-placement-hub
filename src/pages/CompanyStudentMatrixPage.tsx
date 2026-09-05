@@ -115,18 +115,18 @@ export default function CompanyStudentMatrixPage() {
 
   if (!targetCompany) {
     return (
-      <div className="flex min-h-[60vh] items-center justify-center p-8 text-center bg-slate-950 text-white">
-        <div className="rounded-2xl border border-slate-800 bg-slate-900 p-8 shadow-2xl max-w-md">
-          <Building2 className="h-10 w-10 mx-auto text-slate-500 mb-3" />
-          <h2 className="font-heading text-lg font-black">No Recruiter Selected</h2>
-          <p className="mt-1 font-mono text-xs text-slate-400">
+      <div className="flex min-h-[60vh] items-center justify-center p-8 text-center bg-[#FFFDF5]">
+        <div className="rounded-xl border-3 border-black bg-white p-8 shadow-neo max-w-md">
+          <Building2 className="h-10 w-10 mx-auto text-black mb-3 stroke-[1.5]" />
+          <h2 className="font-heading text-lg font-black text-black">No Recruiter Selected</h2>
+          <p className="mt-1 font-mono text-xs text-slate-600 font-bold">
             Please choose a recruiter from the matrix ranking or directory.
           </p>
           <Link
             to="/matrix"
-            className="mt-4 inline-flex items-center gap-1.5 rounded-xl border border-cyan-500/40 bg-cyan-600 px-4 py-2 font-mono text-xs font-bold text-white shadow hover:bg-cyan-500 transition-colors"
+            className="mt-4 inline-flex items-center gap-1.5 rounded-xl border-2 border-black bg-neo-cyan px-4 py-2 font-mono text-xs font-black text-black shadow-neo-sm hover:translate-x-0.5 hover:translate-y-0.5 transition-all"
           >
-            <ArrowLeft className="h-4 w-4" />
+            <ArrowLeft className="h-4 w-4 stroke-[2.5]" />
             <span>Go to My Matrix</span>
           </Link>
         </div>
@@ -135,28 +135,28 @@ export default function CompanyStudentMatrixPage() {
   }
 
   return (
-    <div className="min-h-screen bg-slate-950 text-slate-100 p-4 sm:p-6 lg:p-8 space-y-8">
+    <div className="min-h-screen bg-[#FFFDF5] text-black p-4 sm:p-6 lg:p-8 space-y-8">
       <div className="mx-auto max-w-6xl space-y-8">
         {/* Recruiter Header Bar */}
-        <div className="relative overflow-hidden rounded-2xl border border-slate-800 bg-gradient-to-r from-slate-900 via-slate-900 to-slate-950 p-6 backdrop-blur-md shadow-2xl">
-          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-5 relative z-10">
+        <div className="rounded-xl border-3 border-black bg-white p-6 shadow-neo">
+          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-5">
             <div className="flex items-center gap-4">
               <CompanyLogo
                 name={targetCompany.name}
                 logoUrl={targetCompany.logoUrl}
                 websiteUrl={targetCompany.websiteUrl}
-                className="h-16 w-16 shrink-0 rounded-2xl border border-slate-800 bg-slate-900 p-2 shadow-lg"
+                className="h-16 w-16 shrink-0 rounded-xl border-3 border-black bg-white p-2 shadow-neo-sm"
               />
               <div>
                 <div className="flex flex-wrap items-center gap-2">
-                  <h1 className="font-heading text-xl sm:text-2xl font-black text-white">
+                  <h1 className="font-heading text-xl sm:text-2xl font-black text-black">
                     {targetCompany.name}
                   </h1>
-                  <span className="rounded-md border border-cyan-800/80 bg-cyan-950/80 px-2.5 py-0.5 font-mono text-[11px] font-bold text-cyan-300">
+                  <span className="rounded-md border-2 border-black bg-neo-cyan px-2.5 py-0.5 font-mono text-[11px] font-black text-black shadow-neo-sm">
                     {targetCompany.companyType}
                   </span>
                 </div>
-                <p className="mt-1 font-mono text-xs text-slate-400">
+                <p className="mt-1 font-mono text-xs text-slate-600 font-bold">
                   {targetCompany.category} • Student Matrix Compatibility Assessment
                 </p>
               </div>
@@ -165,9 +165,9 @@ export default function CompanyStudentMatrixPage() {
             <div className="flex items-center gap-3">
               <Link
                 to="/matrix"
-                className="inline-flex items-center gap-1.5 rounded-xl border border-slate-800 bg-slate-900 px-3.5 py-2 font-mono text-xs font-bold text-slate-300 hover:text-white hover:bg-slate-800 transition-colors"
+                className="inline-flex items-center gap-1.5 rounded-xl border-2 border-black bg-slate-100 px-3.5 py-2 font-mono text-xs font-black text-black hover:bg-neo-yellow transition-colors shadow-neo-sm"
               >
-                <ArrowLeft className="h-4 w-4" />
+                <ArrowLeft className="h-4 w-4 stroke-[2.5]" />
                 <span>All Companies</span>
               </Link>
 
@@ -176,9 +176,9 @@ export default function CompanyStudentMatrixPage() {
                   href={targetCompany.websiteUrl}
                   target="_blank"
                   rel="noreferrer"
-                  className="inline-flex items-center gap-1.5 rounded-xl border border-slate-700 bg-slate-800 px-3.5 py-2 font-mono text-xs font-bold text-slate-200 hover:bg-slate-700 transition-colors"
+                  className="inline-flex items-center gap-1.5 rounded-xl border-2 border-black bg-white px-3.5 py-2 font-mono text-xs font-black text-black hover:bg-slate-100 transition-colors shadow-neo-sm"
                 >
-                  <Globe className="h-4 w-4 text-cyan-400" />
+                  <Globe className="h-4 w-4 stroke-[2.5]" />
                   <span>Careers</span>
                 </a>
               )}
@@ -189,23 +189,23 @@ export default function CompanyStudentMatrixPage() {
         {/* Top Summary KPI Cards */}
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {/* Overall Match % with Circular Gauge */}
-          <div className="rounded-2xl border border-slate-800 bg-slate-900/90 p-5 backdrop-blur-md shadow-xl flex items-center justify-between">
+          <div className="rounded-xl border-3 border-black bg-white p-5 shadow-neo flex items-center justify-between">
             <div>
-              <span className="font-mono text-xs uppercase tracking-wider text-slate-400 block mb-1">
+              <span className="font-mono text-[10px] uppercase tracking-wider text-slate-600 font-black block mb-1">
                 Overall Match %
               </span>
               <span
                 className={`font-heading text-3xl font-black ${
                   matchResult.matchPercentage >= 85
-                    ? "text-emerald-400"
+                    ? "text-emerald-700"
                     : matchResult.matchPercentage >= 60
-                    ? "text-amber-400"
-                    : "text-rose-400"
+                    ? "text-amber-700"
+                    : "text-rose-700"
                 }`}
               >
                 {matchResult.matchPercentage}%
               </span>
-              <p className="font-mono text-[10px] text-slate-500 mt-1">
+              <p className="font-mono text-[10px] text-slate-600 mt-1 font-bold">
                 Required vs Student proficiency
               </p>
             </div>
@@ -218,9 +218,9 @@ export default function CompanyStudentMatrixPage() {
           </div>
 
           {/* Eligibility Badge */}
-          <div className="rounded-2xl border border-slate-800 bg-slate-900/90 p-5 backdrop-blur-md shadow-xl flex flex-col justify-between">
+          <div className="rounded-xl border-3 border-black bg-white p-5 shadow-neo flex flex-col justify-between">
             <div>
-              <span className="font-mono text-xs uppercase tracking-wider text-slate-400 block mb-2">
+              <span className="font-mono text-[10px] uppercase tracking-wider text-slate-600 font-black block mb-2">
                 Placement Eligibility
               </span>
               <MatrixEligibilityBadge
@@ -229,7 +229,7 @@ export default function CompanyStudentMatrixPage() {
                 showReason={true}
               />
             </div>
-            <p className="font-mono text-[10px] text-slate-500 mt-2 border-t border-slate-800/80 pt-2">
+            <p className="font-mono text-[10px] text-slate-600 font-bold mt-2 border-t-2 border-slate-200 pt-2">
               Based on active backlogs, CGPA &amp; screening bar
             </p>
           </div>
@@ -240,8 +240,8 @@ export default function CompanyStudentMatrixPage() {
             value={`${matchResult.matchedSkillsCount} / ${matchResult.totalEvaluatedSkills}`}
             subtext={`${matchResult.missingSkillsCount} skill(s) currently missing`}
             icon={CheckCircle2}
-            iconColor="text-emerald-400"
-            iconBg="bg-emerald-500/10 border-emerald-500/30"
+            iconColor="text-black"
+            iconBg="bg-neo-green"
             badge="Proficiency Met"
           />
 
@@ -251,12 +251,8 @@ export default function CompanyStudentMatrixPage() {
             value={`${matchResult.totalSkillGap} pts`}
             subtext="Required Level − Student Level"
             icon={AlertTriangle}
-            iconColor={matchResult.totalSkillGap === 0 ? "text-emerald-400" : "text-amber-400"}
-            iconBg={
-              matchResult.totalSkillGap === 0
-                ? "bg-emerald-500/10 border-emerald-500/30"
-                : "bg-amber-500/10 border-amber-500/30"
-            }
+            iconColor="text-black"
+            iconBg={matchResult.totalSkillGap === 0 ? "bg-neo-green" : "bg-neo-yellow"}
             badge={matchResult.totalSkillGap === 0 ? "Zero Gap" : "Focus Areas"}
           />
         </div>
@@ -283,28 +279,28 @@ export default function CompanyStudentMatrixPage() {
 
         {/* Evaluated Skills Grid: Every Skill Card */}
         <div className="space-y-4">
-          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 border-b border-slate-800 pb-3">
+          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 border-b-4 border-black pb-3">
             <div>
-              <h3 className="font-heading text-xl font-black uppercase tracking-wide text-white">
+              <h3 className="font-heading text-xl font-black uppercase tracking-wide text-black">
                 Detailed Skill Breakdown ({matchResult.skills.length})
               </h3>
-              <p className="font-mono text-xs text-slate-400">
+              <p className="font-mono text-xs text-slate-600 font-bold">
                 Every skill evaluated with Company Required Level, Student Level, Gap, and Status.
               </p>
             </div>
-            <div className="flex items-center gap-2 font-mono text-xs">
-              <span className="flex items-center gap-1 text-emerald-400">
-                <span className="h-2 w-2 rounded-full bg-emerald-400" />
+            <div className="flex items-center gap-2 font-mono text-xs font-black">
+              <span className="flex items-center gap-1 text-emerald-700">
+                <span className="h-2 w-2 rounded-full bg-neo-green border border-black" />
                 {matchResult.matchedSkillsCount} Completed
               </span>
-              <span className="text-slate-600">•</span>
-              <span className="flex items-center gap-1 text-amber-400">
-                <span className="h-2 w-2 rounded-full bg-amber-400" />
+              <span className="text-slate-400">•</span>
+              <span className="flex items-center gap-1 text-amber-700">
+                <span className="h-2 w-2 rounded-full bg-neo-yellow border border-black" />
                 {matchResult.needsImprovementCount} Needs Imp.
               </span>
-              <span className="text-slate-600">•</span>
-              <span className="flex items-center gap-1 text-rose-400">
-                <span className="h-2 w-2 rounded-full bg-rose-400" />
+              <span className="text-slate-400">•</span>
+              <span className="flex items-center gap-1 text-rose-700">
+                <span className="h-2 w-2 rounded-full bg-neo-pink border border-black" />
                 {matchResult.missingSkillsCount} Missing
               </span>
             </div>

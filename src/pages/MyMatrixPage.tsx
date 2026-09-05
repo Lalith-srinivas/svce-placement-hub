@@ -95,56 +95,52 @@ export default function MyMatrixPage() {
   const isDemo = !user || !profile || !profile.skills || profile.skills.length === 0;
 
   return (
-    <div className="min-h-screen bg-slate-950 text-slate-100 selection:bg-cyan-500 selection:text-black">
+    <div className="min-h-screen bg-[#FFFDF5] text-black">
       <HomeNavbar />
 
       {/* Hero Header Banner */}
-      <section className="relative overflow-hidden border-b border-slate-800 bg-gradient-to-b from-slate-900/90 via-slate-950 to-slate-950 px-4 py-8 sm:px-6 sm:py-12 lg:px-8">
-        {/* Glow ambient decorations */}
-        <div className="absolute -top-24 left-1/4 h-96 w-96 rounded-full bg-cyan-500/10 blur-3xl pointer-events-none" />
-        <div className="absolute top-10 right-1/4 h-80 w-80 rounded-full bg-purple-500/10 blur-3xl pointer-events-none" />
-
-        <div className="mx-auto max-w-7xl relative z-10">
+      <section className="border-b-4 border-black bg-white px-4 py-8 sm:px-6 sm:py-12 lg:px-8">
+        <div className="mx-auto max-w-7xl">
           <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6">
             <div>
               {/* Badge */}
-              <div className="inline-flex items-center gap-2 rounded-full border border-cyan-500/30 bg-cyan-500/10 px-3.5 py-1 text-xs font-mono font-bold text-cyan-400 mb-3 shadow-inner">
-                <Sparkles className="h-3.5 w-3.5" />
-                <span>STUDENT MATRIX PLACEMENT READINESS</span>
-              </div>
+              <span className="neo-sticker bg-neo-cyan text-black mb-3">
+                <Sparkles className="h-3.5 w-3.5 stroke-[2.5]" />
+                STUDENT MATRIX PLACEMENT READINESS
+              </span>
 
-              <h1 className="font-heading text-3xl font-black uppercase tracking-tight text-white sm:text-5xl">
+              <h1 className="font-heading text-3xl font-black uppercase tracking-tight text-black sm:text-5xl">
                 Placement Skill Matrix
               </h1>
-              <p className="mt-3 max-w-2xl font-mono text-xs sm:text-sm text-slate-400 leading-relaxed">
+              <p className="mt-3 max-w-2xl font-mono text-xs sm:text-sm text-slate-700 leading-relaxed">
                 Deterministic skill gap intelligence benchmarked against every campus recruiter. 
                 Calculated entirely from verified database thresholds — without generative assumptions.
               </p>
 
               {/* Student Details Pill */}
               <div className="mt-4 flex flex-wrap items-center gap-3">
-                <div className="flex items-center gap-2 rounded-xl border border-slate-800 bg-slate-900/90 px-3.5 py-1.5 text-xs font-mono">
-                  <GraduationCap className="h-4 w-4 text-cyan-400" />
-                  <span className="text-slate-300 font-bold">{activeProfile.personal.full_name}</span>
+                <div className="flex items-center gap-2 rounded-xl border-2 border-black bg-slate-100 px-3.5 py-1.5 text-xs font-mono shadow-neo-sm">
+                  <GraduationCap className="h-4 w-4 text-black stroke-[2.5]" />
+                  <span className="text-black font-black">{activeProfile.personal.full_name}</span>
                   <span className="text-slate-500">•</span>
-                  <span className="text-slate-400">{activeProfile.personal.branch}</span>
+                  <span className="text-slate-700 font-bold">{activeProfile.personal.branch}</span>
                   <span className="text-slate-500">•</span>
-                  <span className="text-emerald-400 font-bold">{activeProfile.personal.cgpa} CGPA</span>
+                  <span className="text-emerald-700 font-black">{activeProfile.personal.cgpa} CGPA</span>
                 </div>
 
                 <Link
                   to="/profile/edit"
-                  className="inline-flex items-center gap-1.5 rounded-xl border border-slate-700 bg-slate-800 px-3 py-1.5 font-mono text-xs font-bold text-slate-200 hover:bg-slate-700 transition-colors"
+                  className="inline-flex items-center gap-1.5 rounded-xl border-2 border-black bg-neo-yellow px-3 py-1.5 font-mono text-xs font-black text-black hover:translate-x-0.5 hover:translate-y-0.5 transition-all shadow-neo-sm"
                 >
-                  <Edit3 className="h-3.5 w-3.5" />
+                  <Edit3 className="h-3.5 w-3.5 stroke-[2.5]" />
                   <span>Update Skills</span>
                 </Link>
               </div>
             </div>
 
             {/* Overall Readiness Circular Gauge in Hero */}
-            <div className="flex flex-col items-center justify-center rounded-2xl border border-slate-800 bg-slate-900/80 p-6 backdrop-blur-md shadow-2xl shrink-0">
-              <span className="font-mono text-xs uppercase tracking-wider text-slate-400 mb-2">
+            <div className="flex flex-col items-center justify-center rounded-xl border-3 border-black bg-slate-50 p-6 shadow-neo shrink-0">
+              <span className="font-mono text-xs uppercase tracking-wider text-slate-600 font-black mb-2">
                 Overall Placement Readiness
               </span>
               <CircularReadinessGauge
@@ -152,7 +148,7 @@ export default function MyMatrixPage() {
                 size="lg"
                 showLabel={true}
               />
-              <span className="mt-2 font-mono text-[10px] text-slate-400">
+              <span className="mt-2 font-mono text-[10px] text-slate-600 font-bold">
                 Screening Benchmark Score
               </span>
             </div>
@@ -160,16 +156,16 @@ export default function MyMatrixPage() {
 
           {/* Demo Mode Notice Banner if viewing fallback */}
           {isDemo && (
-            <div className="mt-6 flex items-center justify-between gap-3 rounded-xl border border-cyan-800/60 bg-cyan-950/40 p-3.5 text-xs font-mono text-cyan-300">
+            <div className="mt-6 flex items-center justify-between gap-3 rounded-xl border-2 border-black bg-neo-yellow p-3.5 text-xs font-mono text-black shadow-neo-sm">
               <div className="flex items-center gap-2">
-                <CheckCircle2 className="h-4 w-4 text-cyan-400 shrink-0" />
-                <span>
+                <CheckCircle2 className="h-4 w-4 text-black shrink-0 stroke-[2.5]" />
+                <span className="font-bold">
                   Viewing Demo Student (Lalith Srinivas, CSE). Sign in or customize profile skills to test your personal matrix.
                 </span>
               </div>
               <Link
                 to="/login"
-                className="shrink-0 font-bold underline hover:text-white"
+                className="shrink-0 font-black underline hover:text-slate-700"
               >
                 Sign In &rarr;
               </Link>
@@ -188,8 +184,8 @@ export default function MyMatrixPage() {
             value={`${matrixMetrics.totalEligibleCompanies} / ${matrixMetrics.totalCompanies}`}
             subtext="Companies meeting all criteria"
             icon={Building2}
-            iconColor="text-emerald-400"
-            iconBg="bg-emerald-500/10 border-emerald-500/30"
+            iconColor="text-black"
+            iconBg="bg-neo-green"
             badge="Meets Criteria"
           />
 
@@ -199,8 +195,8 @@ export default function MyMatrixPage() {
             value={`${matrixMetrics.averageSkillScore} / 10`}
             subtext="Across all verified skills"
             icon={Award}
-            iconColor="text-cyan-400"
-            iconBg="bg-cyan-500/10 border-cyan-500/30"
+            iconColor="text-black"
+            iconBg="bg-neo-cyan"
             badge="Proficiency Level"
           />
 
@@ -210,8 +206,8 @@ export default function MyMatrixPage() {
             value={`${matrixMetrics.totalSkills} Skills`}
             subtext="Logged in student profile"
             icon={Layers}
-            iconColor="text-purple-400"
-            iconBg="bg-purple-500/10 border-purple-500/30"
+            iconColor="text-black"
+            iconBg="bg-neo-purple"
             badge="Active Stack"
           />
 
@@ -221,8 +217,8 @@ export default function MyMatrixPage() {
             value={`${matrixMetrics.missingSkillsCount} Skills`}
             subtext="High-demand recruiter gaps"
             icon={AlertTriangle}
-            iconColor="text-rose-400"
-            iconBg="bg-rose-500/10 border-rose-500/30"
+            iconColor="text-black"
+            iconBg="bg-neo-pink"
             badge="Action Required"
           />
         </section>

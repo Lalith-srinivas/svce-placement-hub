@@ -23,33 +23,33 @@ export const PriorityMissingSkills: React.FC<PriorityMissingSkillsProps> = ({
 
   const priorityMeta = {
     Critical: {
-      badge: "bg-rose-950/80 text-rose-400 border-rose-800/80",
-      accent: "text-rose-400",
+      badge: "bg-neo-pink text-black border-2 border-black shadow-neo-sm",
+      gapColor: "text-rose-600",
     },
     High: {
-      badge: "bg-amber-950/80 text-amber-400 border-amber-800/80",
-      accent: "text-amber-400",
+      badge: "bg-neo-orange text-black border-2 border-black shadow-neo-sm",
+      gapColor: "text-orange-600",
     },
     Medium: {
-      badge: "bg-blue-950/80 text-blue-400 border-blue-800/80",
-      accent: "text-blue-400",
+      badge: "bg-neo-yellow text-black border-2 border-black shadow-neo-sm",
+      gapColor: "text-amber-600",
     },
     Low: {
-      badge: "bg-slate-800 text-slate-300 border-slate-700",
-      accent: "text-slate-400",
+      badge: "bg-slate-100 text-black border-2 border-black shadow-neo-sm",
+      gapColor: "text-slate-600",
     },
   };
 
   if (sortedSkills.length === 0) {
     return (
-      <div className={`rounded-2xl border border-slate-800 bg-slate-900/90 p-6 backdrop-blur-md shadow-xl text-center ${className}`}>
-        <div className="flex h-12 w-12 mx-auto items-center justify-center rounded-full bg-emerald-950/60 text-emerald-400 border border-emerald-800/60 mb-3">
-          <Flame className="h-6 w-6" />
+      <div className={`rounded-xl border-3 border-black bg-white p-6 shadow-neo text-center ${className}`}>
+        <div className="flex h-12 w-12 mx-auto items-center justify-center rounded-lg border-2 border-black bg-neo-green shadow-neo-sm mb-3">
+          <Flame className="h-6 w-6 text-black stroke-[2.5]" />
         </div>
-        <h4 className="font-heading text-base font-black text-white">
+        <h4 className="font-heading text-base font-black text-black">
           Zero Skill Gaps Detected!
         </h4>
-        <p className="font-mono text-xs text-slate-400 mt-1">
+        <p className="font-mono text-xs text-slate-600 mt-1">
           Your current skill proficiencies meet or exceed all evaluated screening benchmarks.
         </p>
       </div>
@@ -57,22 +57,22 @@ export const PriorityMissingSkills: React.FC<PriorityMissingSkillsProps> = ({
   }
 
   return (
-    <div className={`rounded-2xl border border-slate-800 bg-slate-900/90 p-5 sm:p-6 backdrop-blur-md shadow-xl ${className}`}>
-      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 border-b border-slate-800 pb-4 mb-5">
+    <div className={`rounded-xl border-3 border-black bg-white p-5 sm:p-6 shadow-neo ${className}`}>
+      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 border-b-2 border-black pb-4 mb-5">
         <div>
           <div className="flex items-center gap-2">
-            <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-rose-500/10 border border-rose-500/30 text-rose-400">
-              <AlertTriangle className="h-4 w-4" />
+            <div className="flex h-7 w-7 items-center justify-center rounded-lg border-2 border-black bg-neo-pink shadow-neo-sm">
+              <AlertTriangle className="h-4 w-4 text-black stroke-[2.5]" />
             </div>
-            <h3 className="font-heading text-lg font-black tracking-wide text-white">
+            <h3 className="font-heading text-lg font-black tracking-wide text-black">
               {title}
             </h3>
           </div>
-          <p className="font-mono text-xs text-slate-400 mt-1">
+          <p className="font-mono text-xs text-slate-600 mt-1">
             {description}
           </p>
         </div>
-        <span className="self-start sm:self-auto rounded-full border border-rose-800/60 bg-rose-950/60 px-3 py-1 font-mono text-[11px] font-bold text-rose-400">
+        <span className="self-start sm:self-auto rounded-md border-2 border-black bg-neo-pink px-3 py-1 font-mono text-[11px] font-black text-black shadow-neo-sm">
           {sortedSkills.length} High-Gap Skills
         </span>
       </div>
@@ -84,22 +84,22 @@ export const PriorityMissingSkills: React.FC<PriorityMissingSkillsProps> = ({
           return (
             <div
               key={`${skill.skillName}-${index}`}
-              className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 rounded-xl border border-slate-800/90 bg-slate-950/70 p-3.5 hover:border-slate-700 transition-all"
+              className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 rounded-lg border-2 border-black bg-slate-50 p-3.5 shadow-neo-sm"
             >
               <div className="flex items-center gap-3">
-                <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg border border-slate-800 bg-slate-900 font-mono text-xs font-black text-slate-400">
+                <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-md border-2 border-black bg-neo-yellow font-mono text-xs font-black text-black shadow-neo-sm">
                   #{index + 1}
                 </span>
                 <div>
                   <div className="flex flex-wrap items-center gap-2">
-                    <span className="font-heading text-sm font-bold text-white">
+                    <span className="font-heading text-sm font-black text-black">
                       {skill.skillName}
                     </span>
-                    <span className="rounded border border-slate-800 bg-slate-900 px-1.5 py-0.2 font-mono text-[10px] text-slate-400">
+                    <span className="rounded border border-black bg-slate-200 px-1.5 py-0.5 font-mono text-[10px] font-bold text-black">
                       {skill.category}
                     </span>
                   </div>
-                  <div className="flex items-center gap-3 font-mono text-[11px] text-slate-400 mt-0.5">
+                  <div className="flex items-center gap-3 font-mono text-[11px] text-slate-600 mt-0.5">
                     <span>Target: Level {skill.companyRequiredLevel}/10</span>
                     <span>Current: {skill.studentLevel > 0 ? `Level ${skill.studentLevel}/10` : "Not acquired"}</span>
                   </div>
@@ -109,28 +109,28 @@ export const PriorityMissingSkills: React.FC<PriorityMissingSkillsProps> = ({
               <div className="flex items-center gap-3 self-end sm:self-auto">
                 {/* Gap */}
                 <div className="text-right">
-                  <span className="font-mono text-xs font-black text-rose-400 block">
+                  <span className={`font-mono text-xs font-black block ${meta.gapColor}`}>
                     Gap +{skill.gap}
                   </span>
                   <span className="font-mono text-[9px] text-slate-500 uppercase">
-                    Level Difference
+                    Level Diff
                   </span>
                 </div>
 
                 {/* Priority Badge */}
                 <span
-                  className={`inline-flex items-center rounded-full border px-2.5 py-0.5 font-mono text-[10px] font-black uppercase tracking-wider ${meta.badge}`}
+                  className={`inline-flex items-center rounded-md px-2.5 py-0.5 font-mono text-[10px] font-black uppercase tracking-wider ${meta.badge}`}
                 >
-                  {skill.priority} Priority
+                  {skill.priority}
                 </span>
 
                 {/* Quick Link to Skills Roadmap */}
                 <Link
                   to="/skills"
-                  className="flex h-8 w-8 items-center justify-center rounded-lg border border-slate-800 bg-slate-900 text-slate-400 hover:text-white hover:border-slate-600 transition-colors"
+                  className="flex h-8 w-8 items-center justify-center rounded-lg border-2 border-black bg-white text-black hover:bg-neo-yellow transition-colors shadow-neo-sm"
                   title="View Topic Roadmap"
                 >
-                  <ArrowUpRight className="h-4 w-4" />
+                  <ArrowUpRight className="h-4 w-4 stroke-[2.5]" />
                 </Link>
               </div>
             </div>

@@ -31,24 +31,21 @@ export const CircularReadinessGauge: React.FC<CircularReadinessGaugeProps> = ({
 
   const colorStyles = {
     green: {
-      stroke: "#10b981", // emerald-500
-      glow: "rgba(16, 185, 129, 0.35)",
-      textColor: "text-emerald-400",
-      badgeBg: "bg-emerald-950/60 text-emerald-400 border-emerald-800/60",
+      stroke: "#4ADE80",
+      textColor: "text-black",
+      badgeBg: "bg-neo-green text-black border-2 border-black shadow-neo-sm",
       statusText: "Optimal Readiness (≥ 85%)",
     },
     yellow: {
-      stroke: "#f59e0b", // amber-500
-      glow: "rgba(245, 158, 11, 0.35)",
-      textColor: "text-amber-400",
-      badgeBg: "bg-amber-950/60 text-amber-400 border-amber-800/60",
+      stroke: "#FFE600",
+      textColor: "text-black",
+      badgeBg: "bg-neo-yellow text-black border-2 border-black shadow-neo-sm",
       statusText: "Moderate Readiness (60-84%)",
     },
     red: {
-      stroke: "#ef4444", // rose-500
-      glow: "rgba(239, 68, 68, 0.35)",
-      textColor: "text-rose-400",
-      badgeBg: "bg-rose-950/60 text-rose-400 border-rose-800/60",
+      stroke: "#FF6B8B",
+      textColor: "text-black",
+      badgeBg: "bg-neo-pink text-black border-2 border-black shadow-neo-sm",
       statusText: "Preparation Needed (< 60%)",
     },
   }[color];
@@ -60,14 +57,13 @@ export const CircularReadinessGauge: React.FC<CircularReadinessGaugeProps> = ({
           width={dimensions.size}
           height={dimensions.size}
           className="transform -rotate-90 transition-all duration-700 ease-out"
-          style={{ filter: `drop-shadow(0 0 12px ${colorStyles.glow})` }}
         >
           {/* Background Track */}
           <circle
             cx={dimensions.size / 2}
             cy={dimensions.size / 2}
             r={radius}
-            stroke="#1e293b" // slate-800
+            stroke="#E2E8F0"
             strokeWidth={dimensions.stroke}
             fill="transparent"
           />
@@ -88,11 +84,11 @@ export const CircularReadinessGauge: React.FC<CircularReadinessGaugeProps> = ({
 
         {/* Center Percentage Display */}
         <div className="absolute inset-0 flex flex-col items-center justify-center text-center">
-          <span className={`font-mono font-black ${dimensions.textClass} ${colorStyles.textColor}`}>
+          <span className={`font-heading font-black ${dimensions.textClass} ${colorStyles.textColor}`}>
             {clamped}%
           </span>
           {size !== "sm" && (
-            <span className="font-mono text-[10px] uppercase tracking-wider text-slate-400">
+            <span className="font-mono text-[10px] uppercase tracking-wider text-slate-600">
               Readiness
             </span>
           )}
@@ -102,7 +98,7 @@ export const CircularReadinessGauge: React.FC<CircularReadinessGaugeProps> = ({
       {showLabel && (
         <div className="mt-3 text-center">
           <span
-            className={`inline-flex items-center rounded-full border px-2.5 py-0.5 font-mono ${dimensions.labelClass} font-bold ${colorStyles.badgeBg}`}
+            className={`inline-flex items-center rounded-md px-2.5 py-0.5 font-mono ${dimensions.labelClass} font-black ${colorStyles.badgeBg}`}
           >
             {label || colorStyles.statusText}
           </span>

@@ -17,40 +17,40 @@ export const MatrixMetricCard: React.FC<MatrixMetricCardProps> = ({
   value,
   subtext,
   icon: Icon,
-  iconColor = "text-cyan-400",
-  iconBg = "bg-cyan-500/10 border-cyan-500/30",
+  iconColor = "text-black",
+  iconBg = "bg-neo-yellow",
   trend,
   badge,
   className = "",
 }) => {
   return (
     <div
-      className={`rounded-2xl border border-slate-800 bg-slate-900/90 p-5 backdrop-blur-md shadow-xl transition-all hover:border-slate-700 hover:translate-y-[-2px] ${className}`}
+      className={`rounded-xl border-3 border-black bg-white p-5 shadow-neo transition-all hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-neo-hover ${className}`}
     >
       <div className="flex items-center justify-between">
-        <span className="font-mono text-xs uppercase tracking-wider text-slate-400">
+        <span className="font-mono text-[10px] uppercase tracking-wider font-black text-slate-600">
           {label}
         </span>
-        <div className={`flex h-9 w-9 items-center justify-center rounded-xl border ${iconBg}`}>
-          <Icon className={`h-4 w-4 ${iconColor}`} />
+        <div className={`flex h-9 w-9 items-center justify-center rounded-lg border-2 border-black ${iconBg} shadow-neo-sm`}>
+          <Icon className={`h-4 w-4 ${iconColor} stroke-[2.5]`} />
         </div>
       </div>
 
       <div className="mt-3 flex items-baseline gap-2">
-        <span className="font-heading text-2xl sm:text-3xl font-black text-white tracking-tight">
+        <span className="font-heading text-2xl sm:text-3xl font-black text-black tracking-tight">
           {value}
         </span>
         {badge && (
-          <span className="rounded-md border border-slate-700 bg-slate-800 px-2 py-0.5 font-mono text-[10px] font-bold text-slate-300">
+          <span className="rounded-md border border-black bg-slate-100 px-2 py-0.5 font-mono text-[10px] font-black text-black shadow-neo-sm">
             {badge}
           </span>
         )}
       </div>
 
       {(subtext || trend) && (
-        <div className="mt-2 flex items-center justify-between font-mono text-[11px] text-slate-400 border-t border-slate-800/80 pt-2">
+        <div className="mt-2 flex items-center justify-between font-mono text-[11px] text-slate-600 border-t-2 border-slate-200 pt-2">
           <span>{subtext}</span>
-          {trend && <span className="font-bold text-emerald-400">{trend}</span>}
+          {trend && <span className="font-black text-black">{trend}</span>}
         </div>
       )}
     </div>
