@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { Suspense } from "react";
 import { Toaster } from "sonner";
 import { CompanyProvider } from "@/context/CompanyContext";
+import { AuthProvider } from "@/context/AuthContext";
 import { AppLayout } from "@/components/layout/AppLayout";
 import { ScrollToTop } from "@/components/layout/ScrollToTop";
 import Index from "@/pages/Index";
@@ -11,6 +12,10 @@ import SkillsIndex from "@/pages/SkillsIndex";
 import Playbook from "@/pages/Playbook";
 import CompanyIntelligence from "@/pages/CompanyIntelligence";
 import SkillIntelligence from "@/pages/SkillIntelligence";
+import AuthPage from "@/pages/AuthPage";
+import StudentProfileDashboard from "@/pages/StudentProfileDashboard";
+import ProfileOnboardingPage from "@/pages/ProfileOnboardingPage";
+import ProfileEditPage from "@/pages/ProfileEditPage";
 import NotFound from "@/pages/NotFound";
 
 const queryClient = new QueryClient({
@@ -28,30 +33,38 @@ export default function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <Toaster richColors position="top-right" />
-      <CompanyProvider>
-        <BrowserRouter>
-          <ScrollToTop />
-          <Suspense fallback={<div className="min-h-screen bg-background" />}>
-            <Routes>
-              {/* Main Multi-Page Navigation */}
-              <Route path="/" element={<Index />} />
-              <Route path="/tiers" element={<Tiers />} />
-              <Route path="/skills" element={<SkillsIndex />} />
-              <Route path="/playbook" element={<Playbook />} />
+      <AuthProvider>
+        <CompanyProvider>
+          <BrowserRouter>
+            <ScrollToTop />
+            <Suspense fallback={<div className="min-h-screen bg-background" />}>
+              <Routes>
+                {/* Main Multi-Page Navigation */}
+                <Route path="/" element={<Index />} />
+                <Route path="/tiers" element={<Tiers />} />
+                <Route path="/skills" element={<SkillsIndex />} />
+                <Route path="/playbook" element={<Playbook />} />
 
-              {/* Company Detailed Intelligence & Skills */}
-              <Route path="/company" element={<AppLayout />}>
-                <Route index element={<Navigate to="intelligence" replace />} />
-                <Route path="intelligence" element={<CompanyIntelligence />} />
-                <Route path="skills" element={<SkillIntelligence />} />
-              </Route>
+                {/* Student Profile Module */}
+                <Route path="/login" element={<AuthPage />} />
+                <Route path="/profile" element={<StudentProfileDashboard />} />
+                <Route path="/profile/onboarding" element={<ProfileOnboardingPage />} />
+                <Route path="/profile/edit" element={<ProfileEditPage />} />
 
-              {/* Fallback */}
-              <Route path="*" element={<NotFound />} />
-            </Routes>
-          </Suspense>
-        </BrowserRouter>
-      </CompanyProvider>
+                {/* Company Detailed Intelligence & Skills */}
+                <Route path="/company" element={<AppLayout />}>
+                  <Route index element={<Navigate to="intelligence" replace />} />
+                  <Route path="intelligence" element={<CompanyIntelligence />} />
+                  <Route path="skills" element={<SkillIntelligence />} />
+                </Route>
+
+                {/* Fallback */}
+                <Route path="*" element={<NotFound />} />
+              </Routes>
+            </Suspense>
+          </BrowserRouter>
+        </CompanyProvider>
+      </AuthProvider>
     </QueryClientProvider>
   );
 }
